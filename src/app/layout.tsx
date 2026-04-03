@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="pt-br"
       className={cn(
         "h-full",
         "antialiased",
@@ -40,7 +40,7 @@ export default function RootLayout({
         robotoHeading.variable,
       )}
     >
-      <body className="min-h-full flex flex-col dark">
+      <body className="min-h-full flex flex-col bg-background bg-background-gradient bg-cover bg-center bg-no-repeat">
         {children}
       </body>
     </html>
