@@ -4,8 +4,8 @@ import Link from "next/link";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Sobre", href: "/about" },
-  { label: "Blog", href: "/Blog" },
-  { label: "Contato", href: "/Contact" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contato", href: "/contact" },
 ];
 
 const linkNavStyle = clsx(
