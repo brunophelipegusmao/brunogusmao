@@ -8,62 +8,45 @@ type ButtonProps = {
   size?: ButtonSize;
 } & React.ComponentProps<"button">;
 
+const buttonBaseClass = clsx(
+  "inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap font-semibold",
+  "transition-colors duration-200 disabled:pointer-events-none disabled:opacity-50",
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+);
+
+const buttonVariantClasses: Record<ButtonVariants, string> = {
+  default: clsx(
+    "bg-foreground text-background hover:bg-primary hover:text-primary-foreground",
+    "shadow-sm",
+  ),
+  ghost: clsx(
+    "border border-border/80 bg-background/92 text-foreground hover:bg-muted/70",
+    "backdrop-blur-sm dark:bg-background/70 dark:hover:bg-muted/60 dark:backdrop-blur-xl",
+  ),
+  danger: clsx(
+    "bg-destructive text-destructive-foreground hover:opacity-90",
+    "shadow-sm",
+  ),
+};
+
+const buttonSizeClasses: Record<ButtonSize, string> = {
+  sm: "min-h-10 rounded-full px-4 text-sm",
+  md: "min-h-11 rounded-full px-5 text-sm",
+  lg: "min-h-12 rounded-full px-6 text-base",
+};
+
 export function Button({
   variant = "default",
   size = "md",
+  className,
+  type = "button",
   ...props
 }: ButtonProps) {
-  const buttonVariants: Record<ButtonVariants, string> = {
-    default: clsx(
-      "cursor-pointer",
-      "bg-chart-3 text-chart-1 font-bold tracking-wide",
-      "hover:bg-chart-4 hover:font-bold",
-      props.className,
-    ),
-    ghost: clsx(
-      "cursor-not-allowed",
-      "bg-muted text-muted-foreground",
-      "font-bold border-2 border-muted-foreground",
-      props.className,
-    ),
-    danger: clsx(
-      "cursor-pointer",
-      "bg-destructive text-accent font-bold",
-      "hover:bg-destructive-foreground hover:text-accent-foreground",
-      props.className,
-    ),
-  };
-
-  const sizeVariants: Record<ButtonSize, string> = {
-    sm: clsx(
-      "text-sm/tight",
-      "py-2",
-      "px-4",
-      "rounded-md",
-      //   "[&>svg]:h-4 [&>svg]:w-4",
-      "gap-2",
-      props.className,
-    ),
-    md: clsx(
-      "text-base/tight",
-      "px-4 py-2",
-      "rounded-md",
-      //   "[&>svg]:h-4 [&>svg]:w-4",
-      "gap-2",
-      props.className,
-    ),
-    lg: clsx(
-      "text-lg/tight",
-      "py-4",
-      "px-5",
-      "rounded-lg",
-      //   "[&>svg]:h-5 [&>svg]:w-5",
-      "gap-3",
-      props.className,
-    ),
-  };
-
-  const buttonClasses = clsx(buttonVariants[variant], sizeVariants[size]);
-
-  return <button {...props} className={clsx(buttonClasses)}></button>;
+  return (
+    <button
+      type={type}
+      {...props}
+      className={clsx(buttonBaseClass, buttonVariantClasses[variant], buttonSizeClasses[size], className)}
+    />
+  );
 }

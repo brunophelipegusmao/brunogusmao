@@ -5,5 +5,5 @@ export default function AdminHomeLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  return <section className="min-h-full flex flex-col">{children}</section>;
+  return <section className="flex flex-1 flex-col">{children}</section>;
 }
