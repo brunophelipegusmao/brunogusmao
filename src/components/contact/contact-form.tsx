@@ -4,6 +4,7 @@ import clsx from "clsx";
 import type { SubmitEventHandler } from "react";
 
 import { InputText } from "@/components/inputText";
+import PillLink from "@/components/pill-link";
 
 const contactCardClass = clsx(
   "relative overflow-hidden rounded-[2rem] border border-border/70 bg-background/88 p-6",
@@ -15,19 +16,6 @@ const contactCardAccentClass = clsx(
   "bg-gradient-to-r from-transparent via-primary/60 to-transparent",
 );
 const contactCardBodyClass = clsx("space-y-6");
-const contactCardHeaderClass = clsx("space-y-2");
-const contactCardEyebrowClass = clsx(
-  "text-xs font-medium uppercase tracking-[0.34em] text-foreground/60",
-  "dark:text-muted-foreground",
-);
-const contactCardTitleClass = clsx(
-  "text-xl font-semibold tracking-[-0.04em] text-foreground",
-  "sm:text-2xl",
-);
-const contactCardCopyClass = clsx(
-  "max-w-xl text-sm leading-7 text-foreground/72",
-  "dark:text-muted-foreground",
-);
 const contactFormFieldsClass = clsx("grid gap-4 sm:grid-cols-2");
 const contactFieldLabelClass = clsx(
   "text-[0.68rem] font-medium uppercase tracking-[0.34em] text-foreground/60",
@@ -46,6 +34,9 @@ const contactActionsClass = clsx(
   "flex flex-col gap-4 border-t border-border/70 pt-5 sm:flex-row sm:items-center sm:justify-between",
 );
 const contactButtonGroupClass = clsx("flex flex-wrap gap-3");
+const contactFooterClass = clsx(
+  "flex items-center justify-start border-t border-border/70 pt-5",
+);
 const contactPrimaryButtonClass = clsx(
   "inline-flex min-h-11 items-center justify-center rounded-full px-5 py-3",
   "cursor-pointer border border-transparent bg-foreground text-background",
@@ -73,15 +64,6 @@ export default function ContactForm() {
       <div className={contactCardAccentClass} />
 
       <div className={contactCardBodyClass}>
-        <div className={contactCardHeaderClass}>
-          <p className={contactCardEyebrowClass}>Mensagem direta</p>
-          <h2 className={contactCardTitleClass}>Envie o contexto certo.</h2>
-          <p className={contactCardCopyClass}>
-            Preencha só o necessário e eu retorno com clareza sobre o próximo
-            passo.
-          </p>
-        </div>
-
         <div className={contactFormFieldsClass}>
           <InputText
             id="contact-name"
@@ -159,6 +141,17 @@ export default function ContactForm() {
           </div>
 
           <p className={contactNoteClass}>* Obrigatório</p>
+        </div>
+
+        <div className={contactFooterClass}>
+          <PillLink
+            href="https://www.linkedin.com/in/bruno-mulim/"
+            external
+            variant="outline"
+            aria-label="Abrir o perfil de Bruno Gusmão no LinkedIn"
+          >
+            LinkedIn
+          </PillLink>
         </div>
       </div>
     </form>
