@@ -63,22 +63,27 @@ test("about page uses the editorial split on desktop", async ({ page }) => {
   expect(introBox?.width ?? 0).toBeGreaterThan(1000);
 });
 
-for (const route of [
-  {
-    path: "/contact",
-    title: "Contatos",
-    description: "Canal reservado para convites, projetos e conversas profissionais.",
-  },
-] as const) {
-  test(`${route.path} renders its page copy`, async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 1200 });
-    await openPage(page, route.path);
-    await expectLightTheme(page);
+test("contact page renders the minimal form", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1200 });
+  await openPage(page, "/contact");
+  await expectLightTheme(page);
 
-    await expect(page.getByRole("heading", { level: 1, name: route.title })).toBeVisible();
-    await expect(page.getByText(route.description)).toBeVisible();
-  });
-}
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Entre em contato" }),
+  ).toBeVisible();
+  await expect(page.getByText("Vamos conversar")).toBeVisible();
+  await expect(page.getByLabel("Nome")).toBeVisible();
+  await expect(page.getByLabel("E-mail")).toBeVisible();
+  await expect(page.getByLabel("Telefone")).toBeVisible();
+  await expect(page.getByLabel("Mensagem")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Enviar" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Reiniciar" })).toBeVisible();
+  await expect(page.getByText("* Obrigatório")).toBeVisible();
+  await expect(page.getByRole("link", { name: "LinkedIn" })).toHaveAttribute(
+    "href",
+    "https://www.linkedin.com/in/bruno-mulim/",
+  );
+});
 
 test("blog page renders the editorial index", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1200 });

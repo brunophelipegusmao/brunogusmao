@@ -1,16 +1,20 @@
 import clsx from "clsx";
-import { useId } from "react";
+import { useId, type ReactNode } from "react";
 
 type InputTextVariants = "default" | "ghost";
 
 type InputTextProps = {
   id?: string;
-  labelText?: string;
+  labelText?: ReactNode;
+  labelClassName?: string;
+  wrapperClassName?: string;
   variant?: InputTextVariants;
 } & React.ComponentProps<"input">;
 
 export function InputText({
   labelText = "",
+  labelClassName,
+  wrapperClassName,
   variant = "default",
   className,
   id,
@@ -39,13 +43,12 @@ export function InputText({
   );
 
   return (
-    <div
-      className={clsx(
-        "flex w-full flex-col gap-2",
-      )}
-    >
+    <div className={clsx("flex w-full flex-col gap-2", wrapperClassName)}>
       {labelText && (
-        <label className={clsx("text-sm font-medium text-foreground")} htmlFor={inputId}>
+        <label
+          className={clsx("text-sm font-medium text-foreground", labelClassName)}
+          htmlFor={inputId}
+        >
           {labelText}
         </label>
       )}
