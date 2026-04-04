@@ -15,7 +15,7 @@ const navItems = [
 ] as const;
 
 // O header segue no fluxo normal da pagina, mas ainda usa um bloco sutil para manter a leitura limpa.
-const headerShellClass = clsx("relative z-40 mb-6 w-full sm:mb-8");
+const headerShellClass = clsx("relative z-40 mb-4 w-full sm:mb-5");
 
 const headerSurfaceClass = clsx(
   "relative overflow-visible rounded-[1.5rem] border border-border/80",
