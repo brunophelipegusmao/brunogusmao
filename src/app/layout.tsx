@@ -41,6 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-br"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={cn(
         "h-full dark",
