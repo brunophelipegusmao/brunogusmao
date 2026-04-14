@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -8,6 +9,7 @@
   /* Fonts */
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
+  --font-goldman: 'Goldman', sans-serif;
 
   /* Colors */
   --color-background: var(--background);

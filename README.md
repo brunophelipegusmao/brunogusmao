@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# brunogusmao
 
-## Getting Started
+Site pessoal e design system construído com Next.js, React e Tailwind CSS.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js** 16 (App Router, React Compiler, Turbopack)
+- **React** 19
+- **TypeScript** 5
+- **Tailwind CSS** 4
+- **Base UI** — primitivos de UI acessíveis
+- **Biome** — linting e formatação
+- **pnpm** — gerenciador de pacotes
+
+## Estrutura
+
+```
+src/
+├── app/
+│   ├── page.tsx           # Página principal
+│   ├── layout.tsx
+│   └── styleguide/        # Design system / catálogo de componentes
+│       ├── page.tsx       # Design tokens
+│       └── components/    # Páginas de cada componente
+└── components/
+    └── ui/                # Componentes reutilizáveis
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Styleguide
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+O projeto inclui um catálogo de componentes em `/styleguide` com:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Foundation** — Design Tokens
+- **Form Controls** — Button, Checkbox, Radio, Switch, Select
+- **Display** — Alert, Avatar, Badge, Card, Separator, Skeleton, Tooltip
+- **Navigation** — Breadcrumb, Pagination, Tabs
+- **Feedback** — Dialog, Context Menu, Progress
 
-## Learn More
+## Rodando localmente
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm install
+pnpm dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Acesse [http://localhost:3000](http://localhost:3000).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Scripts
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Comando       | Descrição                            |
+| ------------- | ------------------------------------ |
+| `pnpm dev`    | Inicia o servidor de desenvolvimento |
+| `pnpm build`  | Gera o build de produção             |
+| `pnpm start`  | Inicia o servidor de produção        |
+| `pnpm lint`   | Verifica erros com Biome             |
+| `pnpm format` | Formata o código com Biome           |
