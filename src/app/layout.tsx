@@ -17,7 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Bruno Gusmão — Desenvolvedor Full Stack",
-  description: "Portfólio de Bruno Gusmão, desenvolvedor Full Stack especializado em React, Next.js, Node.js e TypeScript.",
+  description:
+    "Portfólio de Bruno Gusmão, desenvolvedor Full Stack especializado em React, Next.js, Node.js e TypeScript.",
 };
 
 export default function RootLayout({

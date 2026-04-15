@@ -4,6 +4,9 @@ import path from "node:path";
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
+  // Permite acessar recursos de desenvolvimento (_next/webpack-hmr) via IP local.
+  // Necessário para evitar bloqueio de hidratação quando abrir o app fora de localhost.
+  allowedDevOrigins: ["192.168.18.10"],
   turbopack: {
     // Workaround: Turbopack panics on non-ASCII chars in path identifiers
     // when the workspace root (detected via pnpm-lock.yaml in /home/bruno/)

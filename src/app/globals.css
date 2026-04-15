@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -38,18 +38,33 @@
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes ticker-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes nav-underline {
-  from { transform: scaleX(0); transform-origin: left; }
-  to { transform: scaleX(1); transform-origin: left; }
+  from {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }
 
 /* ─── Hero layout ─── */
@@ -130,6 +145,13 @@
   color: var(--text-muted);
   white-space: nowrap;
   animation: fade-up 0.6s 1s both;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hero-vertical-label {
+    display: block;
+  }
 }
 
 /* ─── Ticker ─── */
@@ -167,7 +189,7 @@
 
 /* ─── Nav link hover ─── */
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -194,7 +216,7 @@
   /* Fonts */
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
-  --font-goldman: 'Goldman', sans-serif;
+  --font-goldman: "Goldman", sans-serif;
 
   /* Colors */
   --color-background: var(--background);
@@ -415,6 +437,111 @@
   }
 }
 
+/* ─── Mobile Nav Overlay ─── */
+@keyframes mobile-nav-in {
+  from {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mobile-nav-item-in {
+  from {
+    opacity: 0;
+    transform: translateX(-1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background-color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 2rem 3rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.mobile-nav-overlay--open {
+  pointer-events: auto;
+  opacity: 1;
+  animation: mobile-nav-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.mobile-nav-count {
+  font-family: var(--font-geist-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+
+.mobile-nav-item {
+  opacity: 0;
+}
+
+.mobile-nav-overlay--open .mobile-nav-item {
+  animation: mobile-nav-item-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  font-family: var(--font-goldman);
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus-visible {
+  color: var(--text-primary);
+}
+
+.mobile-nav-link--active {
+  color: var(--blue-base);
+}
+
+.mobile-nav-link--active:hover {
+  color: var(--blue-hover);
+}
+
+.mobile-nav-index {
+  font-family: var(--font-geist-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--blue-base);
+  opacity: 0.7;
+  line-height: 1;
+  position: relative;
+  top: -0.15rem;
+}
+
+.mobile-nav-footer {
+  margin-top: auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
 /* ─── Transição de tema ─── */
 html {
   transition:
@@ -440,10 +567,18 @@ html {
 }
 
 @keyframes theme-switch {
-  0% { opacity: 1; }
-  40% { opacity: 0; }
-  60% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .theme-toggle:active .theme-toggle-label {
