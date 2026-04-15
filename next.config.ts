@@ -4,6 +4,14 @@ import path from "node:path";
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "bmcorelayer.vercel.app",
+      },
+    ],
+  },
   // Permite acessar recursos de desenvolvimento (_next/webpack-hmr) via IP local.
   // Necessário para evitar bloqueio de hidratação quando abrir o app fora de localhost.
   allowedDevOrigins: ["192.168.18.10"],

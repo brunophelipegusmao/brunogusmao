@@ -3,6 +3,10 @@
     "shadcn": {
       "command": "npx",
       "args": ["shadcn@latest", "mcp"]
+    },
+    "magicui": {
+      "command": "npx",
+      "args": ["magicui-mcp@latest"]
     }
   }
 }

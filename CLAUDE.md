@@ -67,14 +67,14 @@ className="text-primary bg-muted"
 
 ```
 /                    → src/app/page.tsx (homepage)
-/about               → src/app/[public]/about/page.tsx
-/portfolio           → src/app/[public]/portfolio/page.tsx
-/blog                → src/app/[public]/blog/page.tsx
-/blog/[slug]         → src/app/[public]/blog/[slug]/page.tsx
-/contact             → src/app/[public]/contact/page.tsx
+/about               → src/app/(public)/about/page.tsx
+/portfolio           → src/app/(public)/portfolio/page.tsx
+/blog                → src/app/(public)/blog/page.tsx
+/blog/[slug]         → src/app/(public)/blog/[slug]/page.tsx
+/contact             → src/app/(public)/contact/page.tsx
 ```
 
-O segmento `[public]` é um route group sem prefixo na URL.
+O segmento `(public)` é um route group sem prefixo na URL.
 
 ## Componentes UI
 
@@ -85,7 +85,7 @@ Os componentes em `src/components/ui/` são baseados em ShadCN/Base UI. Ao modif
 
 ## Adicionando novas páginas
 
-1. Criar o arquivo em `src/app/[public]/nome/page.tsx`
+1. Criar o arquivo em `src/app/(public)/nome/page.tsx`
 2. Incluir o `<Header />` ou usar o layout pai
 3. Seguir a estética do projeto: tipografia estrutural, espaço negativo intencional, sem decoração gratuita
 
