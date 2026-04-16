@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useMemo, useState } from 'react';
 
 import {
@@ -328,15 +327,6 @@ export function PostsLibraryModal({
                   </AccordionItem>
                ))}
             </Accordion>
-
-            <div className='border-t border-border bg-bg-subtle p-5'>
-               <Link
-                  href='/dashboard/posts/new'
-                  className='font-mono text-xs uppercase tracking-[0.16em] text-blue-base underline underline-offset-4'
-               >
-                  Criar novo post
-               </Link>
-            </div>
          </DialogContent>
       </Dialog>
    );

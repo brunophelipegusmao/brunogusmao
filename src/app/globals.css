@@ -3044,14 +3044,14 @@ html {
   overflow: hidden;
   background:
     radial-gradient(circle at 8% 12%,
-      color-mix(in oklab, var(--blue-base) 24%, transparent) 0%,
+      color-mix(in oklab, var(--blue-base) 18%, transparent) 0%,
       transparent 32%),
     radial-gradient(circle at 90% 18%,
-      color-mix(in oklab, var(--blue-muted) 20%, transparent) 0%,
+      color-mix(in oklab, var(--blue-muted) 14%, transparent) 0%,
       transparent 36%),
     linear-gradient(180deg,
-      color-mix(in oklab, var(--bg) 94%, var(--blue-subtle)) 0%,
-      var(--bg) 72%);
+      color-mix(in oklab, var(--blue-subtle) 16%, transparent) 0%,
+      transparent 72%);
 }
 
 .private-screen::before {

@@ -6,8 +6,14 @@ import { notFound } from 'next/navigation';
 import { Header } from '@/components/Header';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { WordPullUp } from '@/components/magicui/word-pull-up';
+import { UnoptimizedImage } from '@/components/ui/unoptimized-image';
 
-import { blogPosts } from '../posts';
+import {
+   blogPosts,
+   getBlogSectionBlocks,
+   getPostCoverImage,
+   isOptimizedBlogImageSource,
+} from '../posts';
 
 interface BlogPostPageProps {
    params: Promise<{ slug: string }>;
@@ -47,6 +53,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
    const related = blogPosts
       .filter(entry => entry.slug !== post.slug)
       .slice(0, 3);
+   const coverImage = getPostCoverImage(post);
+   const useOptimizedCover = isOptimizedBlogImageSource(coverImage.src);
 
    return (
       <main className='min-h-screen bg-bg'>
@@ -77,8 +85,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                <BlurFade delay={430}>
                   <div className='blog-post-meta-row'>
                      <span>{post.publishedAt}</span>
-                     <span aria-hidden='true'>•</span>
-                     <span>{post.readingTime}</span>
                   </div>
                </BlurFade>
             </div>
@@ -89,21 +95,28 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
          <section className='px-6 sm:px-8 md:px-16 pb-24'>
             <div className='max-w-275 blog-post-layout'>
                <article className='blog-post-article'>
-                  {post.coverImage ? (
-                     <BlurFade delay={0}>
-                        <figure className='blog-post-cover'>
-                           <div className='blog-post-cover-media'>
+                  <BlurFade delay={0}>
+                     <figure className='blog-post-cover'>
+                        <div className='blog-post-cover-media'>
+                           {useOptimizedCover ? (
                               <Image
-                                 src={post.coverImage.src}
-                                 alt={post.coverImage.alt}
+                                 src={coverImage.src}
+                                 alt={coverImage.alt}
                                  fill
                                  sizes='(max-width: 1100px) 100vw, 800px'
                                  className='object-cover'
                               />
-                           </div>
-                        </figure>
-                     </BlurFade>
-                  ) : null}
+                           ) : (
+                              <UnoptimizedImage
+                                 src={coverImage.src}
+                                 alt={coverImage.alt}
+                                 className='h-full w-full object-cover'
+                                 loading='eager'
+                              />
+                           )}
+                        </div>
+                     </figure>
+                  </BlurFade>
 
                   {post.sections.map((section, sectionIndex) => (
                      <BlurFade key={section.heading} delay={sectionIndex * 80}>
@@ -112,33 +125,54 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                               {section.heading}
                            </h2>
 
-                           {section.image ? (
-                              <figure className='blog-post-section-figure'>
-                                 <div className='blog-post-section-media'>
-                                    <Image
-                                       src={section.image.src}
-                                       alt={section.image.alt}
-                                       fill
-                                       sizes='(max-width: 1100px) 100vw, 760px'
-                                       className='object-cover'
-                                    />
-                                 </div>
-                                 {section.image.caption ? (
-                                    <figcaption className='blog-post-section-caption'>
-                                       {section.image.caption}
-                                    </figcaption>
-                                 ) : null}
-                              </figure>
-                           ) : null}
+                           {getBlogSectionBlocks(section).map(
+                              (block, blockIndex) => {
+                                 if (block.type === 'paragraph') {
+                                    return (
+                                       <p
+                                          key={`${section.heading}-${blockIndex}-${block.content.slice(0, 24)}`}
+                                          className='blog-post-paragraph'
+                                       >
+                                          {block.content}
+                                       </p>
+                                    );
+                                 }
 
-                           {section.paragraphs.map(paragraph => (
-                              <p
-                                 key={paragraph}
-                                 className='blog-post-paragraph'
-                              >
-                                 {paragraph}
-                              </p>
-                           ))}
+                                 const useOptimizedSectionImage =
+                                    isOptimizedBlogImageSource(block.image.src);
+
+                                 return (
+                                    <figure
+                                       key={`${section.heading}-${blockIndex}-${block.image.src}`}
+                                       className='blog-post-section-figure'
+                                    >
+                                       <div className='blog-post-section-media'>
+                                          {useOptimizedSectionImage ? (
+                                             <Image
+                                                src={block.image.src}
+                                                alt={block.image.alt}
+                                                fill
+                                                sizes='(max-width: 1100px) 100vw, 760px'
+                                                className='object-cover'
+                                             />
+                                          ) : (
+                                             <UnoptimizedImage
+                                                src={block.image.src}
+                                                alt={block.image.alt}
+                                                className='h-full w-full object-cover'
+                                                loading='lazy'
+                                             />
+                                          )}
+                                       </div>
+                                       {block.image.caption ? (
+                                          <figcaption className='blog-post-section-caption'>
+                                             {block.image.caption}
+                                          </figcaption>
+                                       ) : null}
+                                    </figure>
+                                 );
+                              },
+                           )}
                         </section>
                      </BlurFade>
                   ))}

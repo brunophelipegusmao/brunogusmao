@@ -5,8 +5,14 @@ import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { WordPullUp } from '@/components/magicui/word-pull-up';
+import { UnoptimizedImage } from '@/components/ui/unoptimized-image';
 
-import { type BlogPost, blogPosts } from './posts';
+import {
+   type BlogPost,
+   blogPosts,
+   getPostCoverImage,
+   isOptimizedBlogImageSource,
+} from './posts';
 
 const POSTS_PER_PAGE = 6;
 
@@ -17,26 +23,36 @@ export const metadata: Metadata = {
 };
 
 function BlogCard({ post, delay }: { post: BlogPost; delay: number }) {
+   const coverImage = getPostCoverImage(post);
+   const useOptimizedCover = isOptimizedBlogImageSource(coverImage.src);
+
    return (
       <BlurFade delay={delay}>
          <article className='blog-card'>
-            {post.coverImage ? (
-               <Link
-                  href={`/blog/${post.slug}`}
-                  className='blog-card-cover-link'
-                  aria-label={`Abrir post: ${post.title}`}
-               >
-                  <div className='blog-card-cover'>
+            <Link
+               href={`/blog/${post.slug}`}
+               className='blog-card-cover-link'
+               aria-label={`Abrir post: ${post.title}`}
+            >
+               <div className='blog-card-cover'>
+                  {useOptimizedCover ? (
                      <Image
-                        src={post.coverImage.src}
-                        alt={post.coverImage.alt}
+                        src={coverImage.src}
+                        alt={coverImage.alt}
                         fill
                         sizes='(max-width: 860px) 100vw, 50vw'
                         className='object-cover'
                      />
-                  </div>
-               </Link>
-            ) : null}
+                  ) : (
+                     <UnoptimizedImage
+                        src={coverImage.src}
+                        alt={coverImage.alt}
+                        className='h-full w-full object-cover'
+                        loading='lazy'
+                     />
+                  )}
+               </div>
+            </Link>
 
             <div className='blog-card-top'>
                <span className='blog-card-index'>{post.index}</span>
@@ -55,9 +71,7 @@ function BlogCard({ post, delay }: { post: BlogPost; delay: number }) {
             </ul>
 
             <div className='blog-card-footer'>
-               <span className='blog-card-meta'>
-                  {post.publishedAt} / {post.readingTime}
-               </span>
+               <span className='blog-card-meta'>{post.publishedAt}</span>
 
                <Link href={`/blog/${post.slug}`} className='blog-card-link'>
                   Ler artigo

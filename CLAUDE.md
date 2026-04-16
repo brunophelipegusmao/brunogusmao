@@ -148,3 +148,54 @@ pnpm lint         # checar erros (Biome)
 pnpm format       # formatar (Biome)
 pnpm build        # build de produção
 ```
+
+## Contexto salvo da frente de posts
+
+Este bloco existe para preservar o estado da implementacao mais recente antes da
+fase backend.
+
+### O que foi fechado no frontend
+
+1. Remocao do link de criar post no modal Biblioteca de Posts.
+2. Conversao da lista de posts em /dashboard/posts para accordion unico.
+3. Correcao do bug de abrir e fechar o accordion da listagem.
+4. Criacao da rota /dashboard/posts/new com editor estruturado.
+5. Suporte a tags no editor e no fluxo de administracao.
+6. Suporte a imagem de capa com fallback padrao.
+7. Suporte a imagens no meio do artigo por blocos estruturados.
+8. Remocao da dependencia de readingTime no fluxo novo e na exibicao publica.
+9. Ajuste do blog publico para renderizar secoes com paragraphs e images via
+   blocks.
+10.   Inclusao do componente src/components/ui/unoptimized-image.tsx para
+      imagens dinamicas fora da pipeline otimizada do Next Image.
+
+### Decisoes importantes
+
+- O editor nao aceita HTML livre.
+- O conteudo do artigo e modelado por estrutura tipada, com secoes e blocos.
+- Os blocos suportados hoje sao `paragraph` e `image`.
+- URLs invalidas de imagem nao entram no preview exportavel.
+- Quando nao houver capa definida, usar public/blog/default-cover.svg.
+
+### Arquivos principais envolvidos
+
+- src/components/damin/posts/new-post-editor.tsx
+- src/app/(private)/dashboard/posts/new/page.tsx
+- src/app/(public)/blog/posts.ts
+- src/app/(public)/blog/page.tsx
+- src/app/(public)/blog/[slug]/page.tsx
+- src/lib/content/posts-admin.ts
+- public/blog/default-cover.svg
+- src/components/ui/unoptimized-image.tsx
+
+### Ponte para backend
+
+Ao iniciar a fase backend, considerar como prioridade:
+
+1. Definir contrato de criacao e edicao de posts compativel com o shape atual de
+   BlogPost, BlogSection e BlogSectionBlock.
+2. Persistir status editorial e conteudo do post em uma fonte de dados real.
+3. Preparar validacao server-side para slug, tags, imagens e estrutura de
+   blocos.
+4. Planejar upload seguro de imagens e estrategia de armazenamento.
+5. Substituir o fluxo de snippets por salvar/publicar via API.

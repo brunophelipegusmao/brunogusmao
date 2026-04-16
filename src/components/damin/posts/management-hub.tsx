@@ -3,6 +3,13 @@
 import { ArrowLeft } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
+import {
+   Accordion,
+   AccordionContent,
+   AccordionHeader,
+   AccordionItem,
+   AccordionTrigger,
+} from '@/components/ui/accordion';
 import { RippleButton } from '@/components/magicui/ripple-button';
 import {
    Dialog,
@@ -301,7 +308,7 @@ export function ManagementHub({ posts }: ManagementHubProps) {
    };
 
    return (
-      <main className='min-h-screen bg-bg px-6 py-16 sm:px-8 md:px-16'>
+      <main className='min-h-screen px-6 py-16 sm:px-8 md:px-16'>
          <section className='mx-auto grid w-full max-w-7xl gap-6'>
             <header className='grid gap-2 border border-border p-5'>
                <div className='flex flex-wrap items-start justify-between gap-3'>
@@ -384,85 +391,138 @@ export function ManagementHub({ posts }: ManagementHubProps) {
                   </span>
                </header>
 
-               <div className='max-h-88 overflow-auto'>
-                  <table className='min-w-full border-collapse'>
-                     <thead>
-                        <tr className='border-b border-border'>
-                           <th className='px-3 py-2 text-left font-mono text-[0.62rem] uppercase tracking-[0.14em] text-text-muted'>
-                              <button
-                                 type='button'
-                                 onClick={() => toggleSort('title')}
-                                 className='inline-flex items-center gap-1'
-                              >
-                                 Titulo <span>{sortIndicator('title')}</span>
-                              </button>
-                           </th>
-                           <th className='px-3 py-2 text-left font-mono text-[0.62rem] uppercase tracking-[0.14em] text-text-muted'>
-                              <button
-                                 type='button'
-                                 onClick={() => toggleSort('publishedAt')}
-                                 className='inline-flex items-center gap-1'
-                              >
-                                 Data de publicacao{' '}
-                                 <span>{sortIndicator('publishedAt')}</span>
-                              </button>
-                           </th>
-                           <th className='px-3 py-2 text-left font-mono text-[0.62rem] uppercase tracking-[0.14em] text-text-muted'>
-                              <button
-                                 type='button'
-                                 onClick={() => toggleSort('status')}
-                                 className='inline-flex items-center gap-1'
-                              >
-                                 Status <span>{sortIndicator('status')}</span>
-                              </button>
-                           </th>
-                           <th className='px-3 py-2 text-right font-mono text-[0.62rem] uppercase tracking-[0.14em] text-text-muted'>
-                              <button
-                                 type='button'
-                                 onClick={() => toggleSort('action')}
-                                 className='inline-flex items-center gap-1'
-                              >
-                                 Acao <span>{sortIndicator('action')}</span>
-                              </button>
-                           </th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        {sortedPosts.map(post => {
-                           const isActive = selectedPost?.slug === post.slug;
+               <Accordion
+                  multiple
+                  defaultValue={['lista-posts']}
+                  className='grid gap-2'
+               >
+                  <AccordionItem value='lista-posts'>
+                     <AccordionHeader>
+                        <AccordionTrigger className='border-b border-border bg-bg-subtle'>
+                           <div className='flex w-full items-center justify-between gap-2 pr-3'>
+                              <h3 className='font-goldman text-xl text-text-primary'>
+                                 Todos os posts
+                              </h3>
+                              <span className='font-mono text-[0.65rem] uppercase tracking-[0.14em] text-text-muted'>
+                                 {sortedPosts.length} item(ns)
+                              </span>
+                           </div>
+                        </AccordionTrigger>
+                     </AccordionHeader>
 
-                           return (
-                              <tr
-                                 key={post.slug}
-                                 className={`border-b border-border/70 ${isActive ? 'bg-blue-base/10' : 'bg-transparent'}`}
-                              >
-                                 <td className='px-3 py-3 text-sm text-text-primary'>
-                                    {post.title}
-                                 </td>
-                                 <td className='px-3 py-3 text-sm text-text-secondary'>
-                                    {post.publishedAt}
-                                 </td>
-                                 <td className='px-3 py-3 text-sm text-text-secondary'>
-                                    {getPostStatusLabel(post.status)}
-                                    {post.isDeleted ? ' (deletado)' : ''}
-                                 </td>
-                                 <td className='px-3 py-3 text-right'>
-                                    <button
-                                       type='button'
-                                       onClick={() =>
-                                          setSelectedSlug(post.slug)
-                                       }
-                                       className='border border-border px-3 py-2 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-text-primary'
-                                    >
-                                       {isActive ? 'Selecionado' : 'Gerenciar'}
-                                    </button>
-                                 </td>
-                              </tr>
-                           );
-                        })}
-                     </tbody>
-                  </table>
-               </div>
+                     <AccordionContent>
+                        {sortedPosts.length > 0 ? (
+                           <div className='max-h-80 overflow-auto p-3'>
+                              <table className='min-w-full border-collapse'>
+                                 <thead>
+                                    <tr className='border-b border-border'>
+                                       <th className='px-3 py-2 text-left font-mono text-[0.62rem] uppercase tracking-[0.14em] text-text-muted'>
+                                          <button
+                                             type='button'
+                                             onClick={() => toggleSort('title')}
+                                             className='inline-flex items-center gap-1'
+                                          >
+                                             Titulo{' '}
+                                             <span>
+                                                {sortIndicator('title')}
+                                             </span>
+                                          </button>
+                                       </th>
+                                       <th className='px-3 py-2 text-left font-mono text-[0.62rem] uppercase tracking-[0.14em] text-text-muted'>
+                                          <button
+                                             type='button'
+                                             onClick={() =>
+                                                toggleSort('publishedAt')
+                                             }
+                                             className='inline-flex items-center gap-1'
+                                          >
+                                             Data de publicacao{' '}
+                                             <span>
+                                                {sortIndicator('publishedAt')}
+                                             </span>
+                                          </button>
+                                       </th>
+                                       <th className='px-3 py-2 text-left font-mono text-[0.62rem] uppercase tracking-[0.14em] text-text-muted'>
+                                          <button
+                                             type='button'
+                                             onClick={() =>
+                                                toggleSort('status')
+                                             }
+                                             className='inline-flex items-center gap-1'
+                                          >
+                                             Status{' '}
+                                             <span>
+                                                {sortIndicator('status')}
+                                             </span>
+                                          </button>
+                                       </th>
+                                       <th className='px-3 py-2 text-right font-mono text-[0.62rem] uppercase tracking-[0.14em] text-text-muted'>
+                                          <button
+                                             type='button'
+                                             onClick={() =>
+                                                toggleSort('action')
+                                             }
+                                             className='inline-flex items-center gap-1'
+                                          >
+                                             Acao{' '}
+                                             <span>
+                                                {sortIndicator('action')}
+                                             </span>
+                                          </button>
+                                       </th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    {sortedPosts.map(post => {
+                                       const isActive =
+                                          selectedPost?.slug === post.slug;
+
+                                       return (
+                                          <tr
+                                             key={post.slug}
+                                             className={`border-b border-border/70 ${isActive ? 'bg-blue-base/10' : 'bg-transparent'}`}
+                                          >
+                                             <td className='px-3 py-3 text-sm text-text-primary'>
+                                                {post.title}
+                                             </td>
+                                             <td className='px-3 py-3 text-sm text-text-secondary'>
+                                                {post.publishedAt}
+                                             </td>
+                                             <td className='px-3 py-3 text-sm text-text-secondary'>
+                                                {getPostStatusLabel(
+                                                   post.status,
+                                                )}
+                                                {post.isDeleted
+                                                   ? ' (deletado)'
+                                                   : ''}
+                                             </td>
+                                             <td className='px-3 py-3 text-right'>
+                                                <button
+                                                   type='button'
+                                                   onClick={() =>
+                                                      setSelectedSlug(post.slug)
+                                                   }
+                                                   className='border border-border px-3 py-2 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-text-primary'
+                                                >
+                                                   {isActive
+                                                      ? 'Selecionado'
+                                                      : 'Gerenciar'}
+                                                </button>
+                                             </td>
+                                          </tr>
+                                       );
+                                    })}
+                                 </tbody>
+                              </table>
+                           </div>
+                        ) : (
+                           <p className='m-3 border border-dashed border-border p-3 text-sm text-text-muted'>
+                              Nenhum post encontrado com os filtros atuais.
+                           </p>
+                        )}
+                     </AccordionContent>
+                  </AccordionItem>
+               </Accordion>
 
                {filteredPosts.length === 0 ? (
                   <p className='text-sm text-text-muted'>
