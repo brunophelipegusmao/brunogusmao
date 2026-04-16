@@ -6,9 +6,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
     <NextThemesProvider
       attribute="class"
-      defaultTheme="system"
-      enableSystem
+      defaultTheme="dark"
+      storageKey="theme-preference"
       disableTransitionOnChange={false}
+      forcedTheme={undefined}
     >
       {children}
     </NextThemesProvider>

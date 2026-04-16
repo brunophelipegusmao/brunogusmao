@@ -1,25 +1,15 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function PrivateThemeToggle() {
    const { resolvedTheme, setTheme } = useTheme();
    const [mounted, setMounted] = useState(false);
-   const hasInitializedLightTheme = useRef(false);
 
    useEffect(() => {
       setMounted(true);
    }, []);
-
-   useEffect(() => {
-      if (!mounted || hasInitializedLightTheme.current) {
-         return;
-      }
-
-      setTheme('light');
-      hasInitializedLightTheme.current = true;
-   }, [mounted, setTheme]);
 
    if (!mounted) {
       return (
