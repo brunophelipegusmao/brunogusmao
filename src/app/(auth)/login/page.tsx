@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Script from 'next/script';
+import { PrivateThemeToggle } from '@/components/damin/private/private-theme-toggle';
 
 interface LoginPageProps {
    searchParams?: Promise<{
@@ -45,10 +46,12 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
          <div className='terminal-login-grid' aria-hidden='true' />
 
          <section className='terminal-login-stage'>
-            <header className='terminal-login-header'></header>
+            <header className='terminal-login-header'>
+               <PrivateThemeToggle />
+            </header>
 
             <section
-               className='terminal-login-card'
+               className='terminal-login-card flex flex-col'
                aria-labelledby='terminal-login-title'
             >
                <h1 id='terminal-login-title' className='terminal-login-title'>

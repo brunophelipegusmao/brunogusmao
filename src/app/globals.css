@@ -2588,7 +2588,28 @@
   display: grid;
   place-items: center;
   padding: clamp(1rem, 3vw, 2rem);
-  background: #000;
+  background:
+    radial-gradient(circle at 8% 12%,
+      color-mix(in oklab, var(--blue-base) 18%, transparent) 0%,
+      transparent 32%),
+    radial-gradient(circle at 90% 18%,
+      color-mix(in oklab, var(--blue-muted) 14%, transparent) 0%,
+      transparent 36%),
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--blue-subtle) 16%, transparent) 0%,
+      transparent 72%);
+}
+
+.terminal-login-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.2;
 }
 
 .terminal-login-grid {
@@ -2598,8 +2619,9 @@
       color-mix(in oklab, var(--blue-base) 65%, transparent) 1.2px,
       transparent 1.2px);
   background-size: 26px 26px;
-  opacity: 0.33;
+  opacity: 0.18;
   pointer-events: none;
+  z-index: 0;
 }
 
 .terminal-login-ghost-list {
@@ -2626,13 +2648,15 @@
 .terminal-login-stage {
   position: relative;
   z-index: 1;
-  width: min(100%, 780px);
+  width: min(100%, 440px);
   display: grid;
   gap: 1.2rem;
 }
 
 .terminal-login-header {
-  text-align: center;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   font-family: var(--font-goldman);
   font-size: clamp(1.05rem, 2.1vw, 2rem);
   line-height: 1.1;
@@ -2643,20 +2667,49 @@
 }
 
 .terminal-login-card {
-  width: min(100%, 540px);
+  position: relative;
+  width: 100%;
   margin-inline: auto;
-  padding: clamp(0.85rem, 2.4vw, 1.2rem);
-  border: 1px solid color-mix(in oklab, var(--blue-base) 64%, var(--border));
-  background: #000;
+  padding: clamp(1.5rem, 4vw, 2rem);
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--border-strong);
+  background:
+    radial-gradient(circle at 8% 12%,
+      color-mix(in oklab, var(--blue-base) 18%, transparent) 0%,
+      transparent 32%),
+    radial-gradient(circle at 90% 18%,
+      color-mix(in oklab, var(--blue-muted) 14%, transparent) 0%,
+      transparent 36%),
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--bg-subtle) 94%, var(--blue-subtle) 6%) 0%,
+      color-mix(in oklab, var(--bg) 96%, var(--blue-subtle) 4%) 100%);
   box-shadow:
-    inset 0 0 0 1px color-mix(in oklab, var(--blue-base) 24%, transparent),
-    0 0 34px color-mix(in oklab, var(--blue-base) 16%, transparent);
+    inset 0 0 0 1px color-mix(in oklab, var(--blue-base) 14%, transparent),
+    0 16px 38px color-mix(in oklab, var(--blue-base) 11%, transparent);
+}
+
+.terminal-login-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.2;
+}
+
+.terminal-login-card>* {
+  position: relative;
+  z-index: 1;
 }
 
 .terminal-login-title {
-  margin: 0 0 0.8rem;
+  margin: 0 0 1.6rem;
   font-family: var(--font-geist-mono);
-  font-size: 0.74rem;
+  font-size: 0.8rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: color-mix(in oklab, var(--text-muted) 70%, white 30%);
@@ -2676,16 +2729,16 @@
 
 .terminal-login-form {
   display: grid;
-  gap: 0.78rem;
+  gap: 1rem;
 }
 
 .terminal-login-field {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  min-height: 52px;
-  border: 1px solid color-mix(in oklab, var(--blue-base) 64%, var(--border));
-  background: color-mix(in oklab, black 82%, var(--blue-deep));
+  min-height: 46px;
+  border: 1px solid color-mix(in oklab, var(--blue-base) 32%, var(--border));
+  background: color-mix(in oklab, var(--bg-subtle) 90%, var(--blue-subtle) 10%);
   padding: 0 0.78rem;
   gap: 0.72rem;
 }
@@ -2734,14 +2787,14 @@
   border: 0;
   background: transparent;
   font-family: var(--font-goldman);
-  font-size: clamp(1.2rem, 2.3vw, 2rem);
+  font-size: 0.9rem;
   line-height: 1;
-  letter-spacing: 0.02em;
-  color: color-mix(in oklab, white 90%, var(--blue-base));
+  letter-spacing: 0.06em;
+  color: color-mix(in oklab, var(--text-primary) 90%, var(--blue-base));
 }
 
 .terminal-login-input::placeholder {
-  color: color-mix(in oklab, var(--blue-base) 72%, white);
+  color: color-mix(in oklab, var(--blue-base) 66%, var(--text-muted));
   opacity: 0.88;
 }
 
@@ -2792,14 +2845,14 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  margin-top: 0.22rem;
+  margin-top: 1rem;
 }
 
 .terminal-login-submit {
   min-height: 44px;
   border: 1px solid color-mix(in oklab, var(--blue-base) 70%, var(--border));
   background: color-mix(in oklab, var(--blue-base) 20%, black);
-  padding: 0.55rem 1.05rem;
+  padding: 0.6rem 1.8rem;
   font-family: var(--font-geist-mono);
   font-size: 0.68rem;
   letter-spacing: 0.17em;

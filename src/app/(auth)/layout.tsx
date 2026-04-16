@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation';
+import { Particles } from '@/components/magicui/particles';
 import { getSession } from '@/lib/auth/session';
 
 interface AuthLayoutProps {
@@ -12,5 +13,10 @@ export default async function AuthLayout({ children }: AuthLayoutProps) {
       redirect('/dashboard');
    }
 
-   return children;
+   return (
+      <div className='relative min-h-screen overflow-hidden'>
+         <Particles className='opacity-70' quantity={36} />
+         <div className='relative z-10'>{children}</div>
+      </div>
+   );
 }

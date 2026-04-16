@@ -3,7 +3,11 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
-export function PrivateThemeToggle() {
+interface PrivateThemeToggleProps {
+   className?: string;
+}
+
+export function PrivateThemeToggle({ className }: PrivateThemeToggleProps) {
    const { resolvedTheme, setTheme } = useTheme();
    const [mounted, setMounted] = useState(false);
 
@@ -11,10 +15,12 @@ export function PrivateThemeToggle() {
       setMounted(true);
    }, []);
 
+   const wrapperClass = className ?? 'fixed top-4 right-4 z-30';
+
    if (!mounted) {
       return (
          <div
-            className='fixed top-4 right-4 z-30 h-10 w-28 border border-border bg-bg-subtle/70 backdrop-blur-sm'
+            className={`${wrapperClass} h-10 w-28 border border-border bg-bg-subtle/70 backdrop-blur-sm`}
             aria-hidden='true'
          />
       );
@@ -23,7 +29,7 @@ export function PrivateThemeToggle() {
    const isDark = resolvedTheme === 'dark';
 
    return (
-      <div className='fixed top-4 right-4 z-30'>
+      <div className={wrapperClass}>
          <button
             type='button'
             onClick={() => setTheme(isDark ? 'light' : 'dark')}
