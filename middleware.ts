@@ -15,7 +15,8 @@ function buildLoginUrl(request: NextRequest): URL {
 export async function middleware(request: NextRequest) {
    const token = request.cookies.get(AUTH_COOKIE_NAME)?.value;
    const pathname = request.nextUrl.pathname;
-   const isPrivateRoute = pathname.startsWith('/dashboard');
+   const isPrivateRoute =
+      pathname.startsWith('/dashboard') || pathname.startsWith('/kaban');
    const isLoginRoute = pathname === '/login';
    const session = token ? await verifyAuthToken(token) : null;
 
@@ -33,5 +34,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-   matcher: ['/dashboard/:path*', '/login'],
+   matcher: ['/dashboard/:path*', '/kaban/:path*', '/login'],
 };
