@@ -2,8 +2,8 @@
 
 ## Objetivo
 
-- O dashboard e o kaban sao independentes.
-- O unico ponto em comum entre eles e a navegacao entre /dashboard e /kaban.
+- O dashboard e o kanban sao independentes.
+- O unico ponto em comum entre eles e a navegacao entre /dashboard e /kanban.
 
 ## Escopo do dashboard (fase atual)
 
@@ -38,8 +38,8 @@
 
 - Incluir animacoes com os componentes de src/components/magicui/.
 - Aplicar ripple-button nos botoes de acao do dashboard.
-- Para navegar entre dashboard e kaban, usar Interactive Hover Button.
-- Usar particles no background das telas privadas (dashboard e kaban).
+- Para navegar entre dashboard e kanban, usar Interactive Hover Button.
+- Usar particles no background das telas privadas (dashboard e kanban).
 
 ## Convencoes
 

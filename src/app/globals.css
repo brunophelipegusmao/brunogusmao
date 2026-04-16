@@ -3015,7 +3015,7 @@ html {
   animation: theme-switch 0.3s ease both;
 }
 
-/* ─── Private routes: dashboard + kaban ─── */
+/* ─── Private routes: dashboard + kanban ─── */
 @keyframes private-particle-float {
   from {
     transform: translateY(18px) scale(0.95);
@@ -3067,7 +3067,7 @@ html {
 }
 
 .private-screen--dashboard .private-shell,
-.private-screen--kaban .private-shell {
+.private-screen--kanban .private-shell {
   position: relative;
   z-index: 1;
 }

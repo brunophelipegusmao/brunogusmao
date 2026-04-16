@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
    const token = request.cookies.get(AUTH_COOKIE_NAME)?.value;
    const pathname = request.nextUrl.pathname;
    const isPrivateRoute =
-      pathname.startsWith('/dashboard') || pathname.startsWith('/kaban');
+      pathname.startsWith('/dashboard') || pathname.startsWith('/kanban');
    const isLoginRoute = pathname === '/login';
    const session = token ? await verifyAuthToken(token) : null;
 
@@ -34,5 +34,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-   matcher: ['/dashboard/:path*', '/kaban/:path*', '/login'],
+   matcher: ['/dashboard/:path*', '/kanban/:path*', '/login'],
 };
