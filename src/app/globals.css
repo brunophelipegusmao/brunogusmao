@@ -3014,3 +3014,88 @@ html {
 .theme-toggle:active .theme-toggle-label {
   animation: theme-switch 0.3s ease both;
 }
+
+/* ─── Private routes: dashboard + kaban ─── */
+@keyframes private-particle-float {
+  from {
+    transform: translateY(18px) scale(0.95);
+  }
+
+  to {
+    transform: translateY(-120vh) scale(1.05);
+  }
+}
+
+@keyframes magic-ripple {
+  from {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.private-screen {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 8% 12%,
+      color-mix(in oklab, var(--blue-base) 24%, transparent) 0%,
+      transparent 32%),
+    radial-gradient(circle at 90% 18%,
+      color-mix(in oklab, var(--blue-muted) 20%, transparent) 0%,
+      transparent 36%),
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--bg) 94%, var(--blue-subtle)) 0%,
+      var(--bg) 72%);
+}
+
+.private-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.2;
+}
+
+.private-screen--dashboard .private-shell,
+.private-screen--kaban .private-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.private-hero {
+  border: 1px solid var(--border-strong);
+  background: color-mix(in oklab, var(--bg-subtle) 92%, white 8%);
+  padding: 1.25rem;
+}
+
+.magic-particle {
+  position: absolute;
+  bottom: -20px;
+  border-radius: 9999px;
+  background: color-mix(in oklab, var(--blue-base) 72%, white 28%);
+  animation-name: private-particle-float;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.magic-ripple {
+  animation: magic-ripple 650ms ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .magic-particle,
+  .magic-ripple {
+    animation: none;
+  }
+}

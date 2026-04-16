@@ -1,16 +1,26 @@
+import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button';
+import { Particles } from '@/components/magicui/particles';
+
 export default function KabanPage() {
    return (
-      <main className='min-h-screen px-6 py-16 sm:px-8 md:px-16'>
-         <section className='mx-auto flex max-w-4xl flex-col gap-4'>
-            <h1 className='text-3xl font-semibold'>Kaban</h1>
-            <p className='text-sm text-muted-foreground'>
+      <main className='private-screen private-screen--kaban px-6 py-16 sm:px-8 md:px-16'>
+         <Particles className='opacity-80' />
+
+         <section className='private-shell mx-auto flex max-w-5xl flex-col gap-6'>
+            <p className='font-mono text-xs uppercase tracking-[0.22em] text-blue-base'>
+               Area privada
+            </p>
+            <h1 className='font-goldman text-4xl leading-[0.94] tracking-[-0.02em] text-text-primary sm:text-5xl'>
+               Kaban
+            </h1>
+            <p className='max-w-2xl text-sm text-text-secondary'>
                Placeholder inicial para organizacao de tarefas.
             </p>
 
             <nav className='flex flex-wrap gap-3 text-sm'>
-               <a href='/dashboard' className='border border-border px-3 py-2'>
+               <InteractiveHoverButton href='/dashboard'>
                   Ir para Dashboard
-               </a>
+               </InteractiveHoverButton>
             </nav>
          </section>
       </main>

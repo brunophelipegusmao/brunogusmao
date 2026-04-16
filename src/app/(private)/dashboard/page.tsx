@@ -1,35 +1,34 @@
 import { DashboardTabs } from '@/components/damin/dashboard/tabs';
+import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button';
+import { Particles } from '@/components/magicui/particles';
+import { RippleButton } from '@/components/magicui/ripple-button';
 
 export default function DashboardPage() {
    return (
-      <main className='min-h-screen px-6 py-16 sm:px-8 md:px-16'>
-         <section className='mx-auto flex max-w-5xl flex-col gap-8'>
-            <header className='flex flex-col gap-4 border border-border p-5 md:flex-row md:items-end md:justify-between'>
+      <main className='private-screen private-screen--dashboard px-6 py-16 sm:px-8 md:px-16'>
+         <Particles className='opacity-90' />
+
+         <section className='private-shell mx-auto flex max-w-6xl flex-col gap-8'>
+            <header className='private-hero flex flex-col gap-4 md:flex-row md:items-end md:justify-between'>
                <div className='space-y-2'>
-                  <p className='text-xs uppercase tracking-[0.18em] text-muted-foreground'>
+                  <p className='font-mono text-xs uppercase tracking-[0.22em] text-blue-base'>
                      Area privada
                   </p>
-                  <h1 className='text-3xl font-semibold'>Painel de Conteudo</h1>
-                  <p className='text-sm text-muted-foreground'>
+                  <h1 className='font-goldman text-4xl leading-[0.92] tracking-[-0.02em] text-text-primary sm:text-5xl'>
+                     Painel de Conteudo
+                  </h1>
+                  <p className='max-w-xl text-sm text-text-secondary'>
                      Controle editorial das rotas publicas /blog e /portfolio.
                   </p>
                </div>
 
                <div className='flex flex-wrap gap-3'>
-                  <a
-                     href='/kaban'
-                     className='border border-border px-3 py-2 text-sm'
-                  >
+                  <InteractiveHoverButton href='/kaban'>
                      Ir para Kaban
-                  </a>
+                  </InteractiveHoverButton>
 
                   <form action='/api/auth/logout' method='post'>
-                     <button
-                        type='submit'
-                        className='border border-border px-3 py-2 text-sm uppercase tracking-[0.12em]'
-                     >
-                        Sair
-                     </button>
+                     <RippleButton type='submit'>Sair</RippleButton>
                   </form>
                </div>
             </header>
