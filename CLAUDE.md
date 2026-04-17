@@ -1,3 +1,118 @@
+---
+
+## Plano de Implementação Backend
+
+> Executar em ordem. Não pular fases.
+
+### Decisões Arquiteturais
+
+- **Fastify** como custom server do Next.js (porta única 3000, sem CORS)
+- **Auth** migrada para `users` table no Neon (bcrypt + JWT via jose)
+- **Drizzle ORM** + `@neondatabase/serverless`
+- **Mock data** extraída para `src/mock/`, toggle via MockProvider +
+  localStorage
+
+### Convenção de Commits
+
+- As mensagens de commit devem seguir o padrão **Conventional Commits**
+- As mensagens de commit devem ser escritas em **inglês**
+
+### Dados Mock a Extrair
+
+| Arquivo fonte                                          | Variáveis                                                | Entidade          |
+| ------------------------------------------------------ | -------------------------------------------------------- | ----------------- |
+| `src/app/(public)/blog/posts.ts`                       | `blogPosts` (11 posts)                                   | Blog              |
+| `src/lib/content/posts-admin.ts`                       | `postStatusBySlug`, `postTagLibrary`                     | Blog admin        |
+| `src/app/(public)/portfolio/page.tsx`                  | `projects` (7 itens)                                     | Portfolio público |
+| `src/components/damin/portfolio/portfolio-manager.tsx` | `initialProjects` (3 itens)                              | Portfolio admin   |
+| `src/components/damin/kanban/state.ts`                 | `INITIAL_COLUMNS`, `INITIAL_CARDS`, `INITIAL_CARD_ORDER` | Kanban            |
+| `src/app/(public)/about/page.tsx`                      | `skills`, `experience`, `stats`                          | Perfil            |
+| `src/app/page.tsx`                                     | `techStack`                                              | Homepage          |
+| `src/app/(public)/contact/page.tsx`                    | `socialLinks`, `WHATSAPP_NUMBER`                         | Contato           |
+
+### Fase 0 — Mock Extraction + Toggle
+
+- Mover todos os arrays mock → `src/mock/*.mock.ts`
+- Criar `src/mock/index.ts` com barrel e flag `USE_MOCK`
+- `src/components/providers/MockProvider.tsx`: Context + toggle por localStorage
+- Switch component na UI de dev para toggle em runtime
+
+### Fase 1 — Fundação
+
+- Instalar: `fastify`, `drizzle-orm`, `@neondatabase/serverless`, `drizzle-kit`,
+  `bcrypt`, `@types/bcrypt`
+- `src/db/index.ts`: conexão Neon pool
+- `src/db/schema/`: tabelas `users`, `posts`, `projects`, `kanban`
+- `drizzle.config.ts` na raiz
+- `server.ts` na raiz: Fastify custom server wrapping Next.js
+
+### Fase 2 — Migrations + Seed
+
+- `pnpm drizzle-kit generate` + `pnpm drizzle-kit migrate`
+- Script de seed populando DB a partir dos mocks
+
+### Fase 3 — API Auth (migração para DB)
+
+- `users` table: `email`, `password_hash`, `role`
+- bcrypt para hash de senha, jose para JWT (já em uso)
+- Seed do usuário admin
+- Fastify auth plugin (`src/server/plugins/auth.plugin.ts`)
+
+### Fase 4 — API Posts
+
+- `GET/POST/PUT/DELETE /api/posts`
+- `GET /api/posts/:slug`
+- Plugin: `src/server/plugins/posts.plugin.ts`
+
+### Fase 5 — API Portfolio
+
+- `GET/POST/PUT/DELETE /api/projects`
+- Plugin: `src/server/plugins/projects.plugin.ts`
+
+### Fase 6 — API Kanban
+
+- CRUD completo: colunas, cards, ordenação
+- Plugin: `src/server/plugins/kanban.plugin.ts`
+
+### Fase 7 — API Profile/Contato
+
+- `GET/PUT /api/profile` (skills, experience, stats)
+- `GET /api/contact` (social links)
+- Plugin: `src/server/plugins/profile.plugin.ts`
+
+### Fase 8 — Integração Frontend
+
+- Conectar admin UI existente aos endpoints Fastify
+- Substituir chamadas mock por service layer real (`src/lib/api/*`)
+- Remover toggle mock do build de produção
+
+### Nova Estrutura de Pastas
+
+```
+server.ts               ← Fastify custom server (raiz)
+drizzle.config.ts       ← config do Drizzle (raiz)
+src/
+  db/
+    index.ts            ← conexão Neon
+    schema/
+      users.ts / posts.ts / projects.ts / kanban.ts
+    migrations/
+  server/
+    plugins/
+      auth.plugin.ts / posts.plugin.ts / projects.plugin.ts
+      kanban.plugin.ts / profile.plugin.ts
+  mock/
+    index.ts            ← barrel + USE_MOCK flag
+    posts.mock.ts / tags.mock.ts / projects.mock.ts
+    kanban.mock.ts / profile.mock.ts / contact.mock.ts
+  components/
+    providers/
+      MockProvider.tsx  ← Context + localStorage toggle
+  lib/
+    api/                ← service layer (frontend calls)
+      posts.ts / projects.ts / kanban.ts
+```
+
 # CLAUDE.md — brunogusmao.dev
 
 Instruções para o Claude Code neste repositório.
