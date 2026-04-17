@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
 const swaggerHtml = `<!DOCTYPE html>
 <html lang="pt-BR">
@@ -38,9 +38,18 @@ const swaggerHtml = `<!DOCTYPE html>
 </html>`;
 
 export async function GET() {
-   return new NextResponse(swaggerHtml, {
+  if (process.env.NODE_ENV === "production") {
+    return new NextResponse("Not Found", {
+      status: 404,
       headers: {
-         'content-type': 'text/html; charset=utf-8',
+        "content-type": "text/plain; charset=utf-8",
       },
-   });
+    });
+  }
+
+  return new NextResponse(swaggerHtml, {
+    headers: {
+      "content-type": "text/html; charset=utf-8",
+    },
+  });
 }
