@@ -1,4 +1,4 @@
-import { DashboardTabs } from '@/components/damin/dashboard/tabs';
+import { DashboardTabs } from '@/components/admin/dashboard/tabs';
 import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button';
 import { RippleButton } from '@/components/magicui/ripple-button';
 

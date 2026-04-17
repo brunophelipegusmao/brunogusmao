@@ -3,8 +3,8 @@
 import { useMemo, useState } from 'react';
 import { RippleButton } from '@/components/magicui/ripple-button';
 import { getPortfolioManagerProjects } from '@/lib/api/content.client';
+import type { PortfolioManagerProject } from '@/lib/content/portfolio';
 import { cn } from '@/lib/utils';
-import type { PortfolioManagerProject } from '@/mock';
 
 interface PortfolioProjectFormState {
    title: string;

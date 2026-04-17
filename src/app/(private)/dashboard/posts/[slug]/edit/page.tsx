@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { PostManagementPanel } from '@/components/damin/posts/post-management-panel';
+import { PostManagementPanel } from '@/components/admin/posts/post-management-panel';
 import {
    getDashboardPosts,
    getPostTagLibrary,

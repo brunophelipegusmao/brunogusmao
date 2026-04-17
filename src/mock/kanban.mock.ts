@@ -2,7 +2,7 @@ import type {
    KanbanCardOrder,
    KanbanCardsById,
    KanbanColumn,
-} from '@/components/damin/kanban/types';
+} from '@/components/admin/kanban/types';
 
 export const INITIAL_COLUMNS: KanbanColumn[] = [
    { id: 'todo', title: 'A fazer', wipLimit: 6 },

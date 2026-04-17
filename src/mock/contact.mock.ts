@@ -1,14 +1,6 @@
 export const WHATSAPP_NUMBER = '5521998787394';
 
-export type SocialBrand = 'instagram' | 'github' | 'linkedin';
-
-export interface SocialLink {
-   brand: SocialBrand;
-   label: string;
-   href: string;
-   handle: string;
-   meta?: string;
-}
+import type { SocialLink } from '@/lib/content/contact';
 
 export const socialLinks: SocialLink[] = [
    {

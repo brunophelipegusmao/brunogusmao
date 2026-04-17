@@ -4,7 +4,7 @@ import { Header } from '@/components/Header';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { WordPullUp } from '@/components/magicui/word-pull-up';
 import { getSocialLinks, getWhatsAppNumber } from '@/lib/api/content.server';
-import type { SocialBrand } from '@/mock';
+import type { SocialBrand } from '@/lib/content/contact';
 
 export const metadata: Metadata = {
    title: 'Contato — Bruno Gusmão',

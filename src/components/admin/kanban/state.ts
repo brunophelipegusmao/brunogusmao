@@ -9,7 +9,7 @@ import type {
    MoveCardArgs,
    MoveCardResult,
    UpdateCardArgs,
-} from '@/components/damin/kanban/types';
+} from '@/components/admin/kanban/types';
 import {
    getKanbanCardOrder,
    getKanbanCards,

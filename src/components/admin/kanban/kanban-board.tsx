@@ -15,16 +15,16 @@ import {
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import { useEffect, useMemo, useState } from 'react';
 
-import { KanbanCard } from '@/components/damin/kanban/kanban-card';
-import { KanbanColumn } from '@/components/damin/kanban/kanban-column';
+import { KanbanCard } from '@/components/admin/kanban/kanban-card';
+import { KanbanColumn } from '@/components/admin/kanban/kanban-column';
 import {
    findCardColumn,
    useKanbanStore,
-} from '@/components/damin/kanban/state';
+} from '@/components/admin/kanban/state';
 import type {
    KanbanColumnId,
    KanbanPriority,
-} from '@/components/damin/kanban/types';
+} from '@/components/admin/kanban/types';
 import { RippleButton } from '@/components/magicui/ripple-button';
 import { Button } from '@/components/ui/button';
 import {

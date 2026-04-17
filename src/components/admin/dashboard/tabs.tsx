@@ -1,7 +1,7 @@
 'use client';
 
-import { DashboardPortfolioTab } from '@/components/damin/portfolio';
-import { DashboardPostsTab } from '@/components/damin/posts';
+import { DashboardPortfolioTab } from '@/components/admin/portfolio';
+import { DashboardPostsTab } from '@/components/admin/posts';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export function DashboardTabs() {

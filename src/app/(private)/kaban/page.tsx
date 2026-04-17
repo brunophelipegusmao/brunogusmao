@@ -1,4 +1,4 @@
-import { KanbanBoard } from '@/components/damin/kanban/kanban-board';
+import { KanbanBoard } from '@/components/admin/kanban/kanban-board';
 import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button';
 
 export default function KanbanPage() {

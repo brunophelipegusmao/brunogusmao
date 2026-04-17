@@ -1,4 +1,10 @@
-export const aboutSkills = {
+import type {
+   AboutExperienceItem,
+   AboutSkills,
+   AboutStatItem,
+} from '@/lib/content/profile';
+
+export const aboutSkills: AboutSkills = {
    Frontend: [
       'React',
       'Next.js',
@@ -17,9 +23,9 @@ export const aboutSkills = {
    ],
    Dados: ['PostgreSQL', 'MySQL', 'Drizzle ORM', 'Redis', 'Prisma'],
    DevOps: ['Docker', 'Git', 'CI/CD', 'Linux', 'Vercel', 'AWS'],
-} as const;
+};
 
-export const aboutExperience = [
+export const aboutExperience: AboutExperienceItem[] = [
    {
       role: 'Desenvolvedor Full Stack',
       company: 'Freelance / Projetos próprios',
@@ -36,14 +42,14 @@ export const aboutExperience = [
    },
 ];
 
-export const aboutStats = [
+export const aboutStats: AboutStatItem[] = [
    { value: 5, suffix: '+', label: 'Anos de código' },
    { value: 30, suffix: '+', label: 'Projetos entregues' },
    { value: 15, suffix: '+', label: 'Tecnologias' },
    { value: 100, suffix: '%', label: 'Comprometimento' },
 ];
 
-export const techStack = [
+export const techStack: string[] = [
    'React',
    'Next.js',
    'TypeScript',

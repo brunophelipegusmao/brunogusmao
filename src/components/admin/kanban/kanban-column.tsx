@@ -6,11 +6,11 @@ import {
    verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 
-import { KanbanCard } from '@/components/damin/kanban/kanban-card';
+import { KanbanCard } from '@/components/admin/kanban/kanban-card';
 import type {
    KanbanCard as KanbanCardType,
    KanbanColumn as KanbanColumnType,
-} from '@/components/damin/kanban/types';
+} from '@/components/admin/kanban/types';
 import { cn } from '@/lib/utils';
 
 interface KanbanColumnProps {

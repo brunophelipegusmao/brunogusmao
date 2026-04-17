@@ -1,4 +1,4 @@
-import { NewPostEditor } from '@/components/damin/posts/new-post-editor';
+import { NewPostEditor } from '@/components/admin/posts/new-post-editor';
 import { getBlogPosts } from '@/lib/api/content.server';
 
 export default async function DashboardNewPostPage() {

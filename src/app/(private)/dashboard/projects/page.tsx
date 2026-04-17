@@ -1,4 +1,4 @@
-import { PortfolioManager } from '@/components/damin/portfolio/portfolio-manager';
+import { PortfolioManager } from '@/components/admin/portfolio/portfolio-manager';
 import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button';
 
 export default function DashboardProjectsPage() {

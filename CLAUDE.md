@@ -11,6 +11,7 @@
 - **Drizzle ORM** + `@neondatabase/serverless`
 - **Mock data** extraída para `src/mock/`, toggle via MockProvider +
   localStorage
+- **validações com zod
 
 ### Convenção de Commits
 

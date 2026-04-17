@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Script from 'next/script';
-import { PrivateThemeToggle } from '@/components/damin/private/private-theme-toggle';
+import { PrivateThemeToggle } from '@/components/admin/private/private-theme-toggle';
 
 interface LoginPageProps {
    searchParams?: Promise<{

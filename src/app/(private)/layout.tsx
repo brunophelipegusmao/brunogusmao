@@ -1,4 +1,4 @@
-import { PrivateThemeToggle } from '@/components/damin/private/private-theme-toggle';
+import { PrivateThemeToggle } from '@/components/admin/private/private-theme-toggle';
 import { Particles } from '@/components/magicui/particles';
 import { requireSession } from '@/lib/auth/session';
 

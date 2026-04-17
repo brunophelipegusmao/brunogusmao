@@ -6,7 +6,7 @@ import { CSS } from '@dnd-kit/utilities';
 import type {
    KanbanCard as KanbanCardType,
    KanbanColumnId,
-} from '@/components/damin/kanban/types';
+} from '@/components/admin/kanban/types';
 import { cn } from '@/lib/utils';
 
 interface KanbanCardProps {
