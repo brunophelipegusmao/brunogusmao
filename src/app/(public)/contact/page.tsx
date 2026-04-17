@@ -3,39 +3,8 @@ import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { WordPullUp } from '@/components/magicui/word-pull-up';
-
-const WHATSAPP_NUMBER = '5521998787394';
-
-type SocialBrand = 'instagram' | 'github' | 'linkedin';
-
-interface SocialLink {
-   brand: SocialBrand;
-   label: string;
-   href: string;
-   handle: string;
-   meta?: string;
-}
-
-const socialLinks: SocialLink[] = [
-   {
-      brand: 'instagram',
-      label: 'Instagram',
-      href: 'https://instagram.com/brunopmulim',
-      handle: '@brunopmulim',
-   },
-   {
-      brand: 'github',
-      label: 'GitHub',
-      href: 'https://github.com/brunophelipegusmao',
-      handle: 'github.com/brunophelipegusmao',
-   },
-   {
-      brand: 'linkedin',
-      label: 'LinkedIn',
-      href: 'https://linkedin.com/in/bruno-mulim',
-      handle: '/in/bruno-mulim',
-   },
-];
+import { getSocialLinks, getWhatsAppNumber } from '@/lib/api/content.server';
+import type { SocialBrand } from '@/mock';
 
 export const metadata: Metadata = {
    title: 'Contato — Bruno Gusmão',
@@ -102,7 +71,12 @@ function WhatsAppIcon() {
    );
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+   const [socialLinks, whatsappNumber] = await Promise.all([
+      getSocialLinks(),
+      getWhatsAppNumber(),
+   ]);
+
    return (
       <main className='min-h-screen bg-bg'>
          <Header />
@@ -202,7 +176,7 @@ export default function ContactPage() {
                            <input
                               type='hidden'
                               name='phone'
-                              value={WHATSAPP_NUMBER}
+                              value={whatsappNumber}
                            />
 
                            <label

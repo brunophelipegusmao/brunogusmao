@@ -2,7 +2,7 @@
 
 import { ArrowLeft } from 'lucide-react';
 import { useMemo, useState } from 'react';
-
+import { RippleButton } from '@/components/magicui/ripple-button';
 import {
    Accordion,
    AccordionContent,
@@ -10,7 +10,6 @@ import {
    AccordionItem,
    AccordionTrigger,
 } from '@/components/ui/accordion';
-import { RippleButton } from '@/components/magicui/ripple-button';
 import {
    Dialog,
    DialogContent,
@@ -21,10 +20,10 @@ import {
 import {
    type DashboardPostSummary,
    getPostStatusLabel,
+   getPostTagLibrary,
    type PostTagDefinition,
    type PostTagStyle,
    type PostWorkflowStatus,
-   postTagLibrary,
 } from '@/lib/content/posts-admin';
 
 interface ManagementHubProps {
@@ -98,8 +97,9 @@ export function ManagementHub({ posts }: ManagementHubProps) {
       buildInitialPostState(posts),
    );
 
-   const [tagLibrary, setTagLibrary] =
-      useState<PostTagDefinition[]>(postTagLibrary);
+   const [tagLibrary, setTagLibrary] = useState<PostTagDefinition[]>(() =>
+      getPostTagLibrary(),
+   );
 
    const [newTagLabel, setNewTagLabel] = useState('');
    const [newTagTextColor, setNewTagTextColor] = useState('#f2f6ff');

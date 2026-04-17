@@ -18,7 +18,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { UnoptimizedImage } from '@/components/ui/unoptimized-image';
 import {
-   postTagLibrary,
+   getPostTagLibrary,
    type PostTagDefinition,
    type PostWorkflowStatus,
 } from '@/lib/content/posts-admin';
@@ -246,8 +246,9 @@ export function NewPostEditor({ nextIndex }: NewPostEditorProps) {
    const [status, setStatus] = useState<PostWorkflowStatus>('em-andamento');
    const [coverSrc, setCoverSrc] = useState('');
    const [coverAlt, setCoverAlt] = useState('');
-   const [tagLibrary, setTagLibrary] =
-      useState<PostTagDefinition[]>(postTagLibrary);
+   const [tagLibrary, setTagLibrary] = useState<PostTagDefinition[]>(() =>
+      getPostTagLibrary(),
+   );
    const [selectedTags, setSelectedTags] = useState<string[]>([]);
    const [newTagLabel, setNewTagLabel] = useState('');
    const [sections, setSections] = useState<DraftSection[]>([createSection()]);

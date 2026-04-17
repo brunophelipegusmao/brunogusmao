@@ -105,6 +105,20 @@ http://localhost:3000
 | `pnpm lint`   | Executa `biome check` no projeto     |
 | `pnpm format` | Executa `biome format --write`       |
 
+## Documentacao da API
+
+Swagger UI inicial disponivel em:
+
+```text
+http://localhost:3000/api/docs
+```
+
+Especificacao OpenAPI em JSON:
+
+```text
+http://localhost:3000/api/openapi
+```
+
 ## Arquitetura de Rotas
 
 O frontend usa route groups para separar responsabilidades sem alterar a URL.

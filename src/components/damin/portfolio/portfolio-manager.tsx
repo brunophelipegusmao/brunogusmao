@@ -2,18 +2,9 @@
 
 import { useMemo, useState } from 'react';
 import { RippleButton } from '@/components/magicui/ripple-button';
+import { getPortfolioManagerProjects } from '@/lib/api/content.client';
 import { cn } from '@/lib/utils';
-
-interface PortfolioProject {
-   id: string;
-   title: string;
-   description: string;
-   stack: string[];
-   image: string;
-   live: string;
-   repo: string;
-   featured: boolean;
-}
+import type { PortfolioManagerProject } from '@/mock';
 
 interface PortfolioProjectFormState {
    title: string;
@@ -27,48 +18,6 @@ interface PortfolioProjectFormState {
 interface PortfolioManagerProps {
    showHeader?: boolean;
 }
-
-const initialProjects: PortfolioProject[] = [
-   {
-      id: 'jm-store',
-      title: 'JM Store',
-      description:
-         'Loja online com catalogo de 500+ produtos, carrinho, avaliacoes e checkout orientado a conversao.',
-      stack: [
-         'Next.js 15',
-         'PostgreSQL',
-         'Drizzle ORM',
-         'Auth.js',
-         'Shadcn/ui',
-      ],
-      image: 'https://bmcorelayer.vercel.app/_next/image?url=%2FChatGPT%20Image%2012%20de%20nov.%20de%202025%2C%2009_34_50.png&w=1920&q=75',
-      live: 'https://ecommerce-jm.vercel.app/',
-      repo: 'https://github.com/brunophelipegusmao/ecommerce-jm',
-      featured: true,
-   },
-   {
-      id: 'chronos-pomodoro',
-      title: 'Chronos Pomodoro',
-      description:
-         'Tecnica Pomodoro com controle de ciclos, historico de sessoes e navegacao SPA para foco diario.',
-      stack: ['React 19', 'TypeScript', 'Vite 7', 'React Router 7', 'date-fns'],
-      image: 'https://bmcorelayer.vercel.app/_next/image?url=%2Fcovers%2Fchronos-pomodoro-og.png&w=1920&q=75',
-      live: 'https://chronospomodoro.vercel.app/',
-      repo: 'https://github.com/brunophelipegusmao/chronos-pomodoro',
-      featured: false,
-   },
-   {
-      id: 'aura-frontend',
-      title: 'Aura Frontend',
-      description:
-         'Frontend moderno com transicoes de pagina e experiencia responsiva em stack React/Next.',
-      stack: ['Next.js 16', 'MUI 7', 'Tailwind CSS 4', 'Framer Motion', 'Swup'],
-      image: 'https://bmcorelayer.vercel.app/_next/image?url=%2Fcovers%2Faura-frontend-og.png&w=1920&q=75',
-      live: 'https://aura-frontend-lovat.vercel.app',
-      repo: 'https://github.com/brunophelipegusmao/aura-frontend',
-      featured: false,
-   },
-];
 
 const initialFormState: PortfolioProjectFormState = {
    title: '',
@@ -98,8 +47,9 @@ function createProjectId() {
 }
 
 export function PortfolioManager({ showHeader = true }: PortfolioManagerProps) {
-   const [projects, setProjects] =
-      useState<PortfolioProject[]>(initialProjects);
+   const [projects, setProjects] = useState<PortfolioManagerProject[]>(() =>
+      getPortfolioManagerProjects(),
+   );
    const [form, setForm] =
       useState<PortfolioProjectFormState>(initialFormState);
    const [editingId, setEditingId] = useState<string | null>(null);
@@ -162,7 +112,7 @@ export function PortfolioManager({ showHeader = true }: PortfolioManagerProps) {
       resetForm();
    }
 
-   function handleEdit(project: PortfolioProject) {
+   function handleEdit(project: PortfolioManagerProject) {
       setEditingId(project.id);
       setForm({
          title: project.title,

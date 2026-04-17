@@ -7,9 +7,9 @@ import { Header } from '@/components/Header';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { WordPullUp } from '@/components/magicui/word-pull-up';
 import { UnoptimizedImage } from '@/components/ui/unoptimized-image';
+import { getBlogPosts } from '@/lib/api/content.server';
 
 import {
-   blogPosts,
    getBlogSectionBlocks,
    getPostCoverImage,
    isOptimizedBlogImageSource,
@@ -19,13 +19,16 @@ interface BlogPostPageProps {
    params: Promise<{ slug: string }>;
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+   const blogPosts = await getBlogPosts();
+
    return blogPosts.map(post => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
    params,
 }: BlogPostPageProps): Promise<Metadata> {
+   const blogPosts = await getBlogPosts();
    const { slug } = await params;
    const post = blogPosts.find(entry => entry.slug === slug);
 
@@ -43,6 +46,7 @@ export async function generateMetadata({
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
+   const blogPosts = await getBlogPosts();
    const { slug } = await params;
    const post = blogPosts.find(entry => entry.slug === slug);
 

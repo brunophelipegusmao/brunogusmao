@@ -6,10 +6,10 @@ import { Header } from '@/components/Header';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { WordPullUp } from '@/components/magicui/word-pull-up';
 import { UnoptimizedImage } from '@/components/ui/unoptimized-image';
+import { getBlogPosts } from '@/lib/api/content.server';
 
 import {
    type BlogPost,
-   blogPosts,
    getPostCoverImage,
    isOptimizedBlogImageSource,
 } from './posts';
@@ -90,6 +90,7 @@ interface BlogPageProps {
 }
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
+   const blogPosts = await getBlogPosts();
    const resolvedSearchParams = (await searchParams) ?? {};
    const pageParam = Number(resolvedSearchParams.page ?? '1');
 
