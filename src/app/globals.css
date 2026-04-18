@@ -41,7 +41,6 @@
 }
 
 @keyframes blink {
-
   0%,
   100% {
     opacity: 1;
@@ -108,7 +107,6 @@
 }
 
 @media (max-width: 639px) {
-
   .hero-name-bruno,
   .hero-name-gusmao {
     font-size: clamp(3.7rem, 17vw, 4.9rem);
@@ -1988,7 +1986,6 @@
 }
 
 @keyframes login-caret-blink {
-
   0%,
   49% {
     opacity: 1;
@@ -2005,12 +2002,16 @@
   min-height: 100vh;
   overflow: hidden;
   background:
-    radial-gradient(circle at top right,
+    radial-gradient(
+      circle at top right,
       color-mix(in oklab, var(--blue-base) 12%, transparent) 0%,
-      transparent 32%),
-    linear-gradient(180deg,
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
       color-mix(in oklab, var(--bg) 94%, var(--blue-subtle)) 0%,
-      var(--bg) 68%), var(--bg);
+      var(--bg) 68%
+    ), var(--bg);
   padding: clamp(1rem, 3vw, 2rem);
 }
 
@@ -2063,10 +2064,13 @@
   position: relative;
   width: min(100%, 1120px);
   overflow: hidden;
-  border: 1px solid color-mix(in oklab, var(--border-strong) 70%, var(--blue-base));
-  background: linear-gradient(180deg,
-      color-mix(in oklab, var(--bg-subtle) 82%, white 18%) 0%,
-      color-mix(in oklab, var(--bg) 94%, white 6%) 100%);
+  border: 1px solid
+    color-mix(in oklab, var(--border-strong) 70%, var(--blue-base));
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--bg-subtle) 82%, white 18%) 0%,
+    color-mix(in oklab, var(--bg) 94%, white 6%) 100%
+  );
   box-shadow:
     0 20px 70px color-mix(in oklab, var(--blue-deep) 14%, transparent),
     inset 0 1px 0 color-mix(in oklab, white 45%, transparent);
@@ -2077,12 +2081,16 @@
   position: absolute;
   inset: 1px;
   background:
-    radial-gradient(circle at top right,
+    radial-gradient(
+      circle at top right,
       color-mix(in oklab, var(--blue-base) 14%, transparent) 0%,
-      transparent 30%),
-    linear-gradient(135deg,
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
       color-mix(in oklab, var(--blue-subtle) 26%, transparent) 0%,
-      transparent 55%);
+      transparent 55%
+    );
   pointer-events: none;
 }
 
@@ -2091,10 +2099,12 @@
   left: 0;
   right: 0;
   height: 7rem;
-  background: linear-gradient(180deg,
-      transparent 0%,
-      color-mix(in oklab, var(--blue-base) 18%, transparent) 50%,
-      transparent 100%);
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in oklab, var(--blue-base) 18%, transparent) 50%,
+    transparent 100%
+  );
   mix-blend-mode: screen;
   pointer-events: none;
   animation: login-scan-sweep 5.8s linear infinite;
@@ -2214,7 +2224,8 @@
 .login-terminal {
   border: 1px solid color-mix(in oklab, var(--blue-base) 34%, var(--border));
   background: color-mix(in oklab, var(--blue-deep) 86%, black 14%);
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--blue-base) 22%, transparent);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in oklab, var(--blue-base) 22%, transparent);
 }
 
 .login-terminal-bar {
@@ -2223,7 +2234,8 @@
   gap: 0.45rem;
   min-height: 44px;
   padding: 0.62rem 0.75rem;
-  border-bottom: 1px solid color-mix(in oklab, var(--blue-base) 26%, var(--border));
+  border-bottom: 1px solid
+    color-mix(in oklab, var(--blue-base) 26%, var(--border));
   background: color-mix(in oklab, var(--blue-deep) 70%, var(--bg));
 }
 
@@ -2472,9 +2484,11 @@
   width: 100%;
   min-height: 52px;
   border: 1px solid var(--blue-base);
-  background: linear-gradient(135deg,
-      var(--blue-base) 0%,
-      color-mix(in oklab, var(--blue-hover) 84%, white) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--blue-base) 0%,
+    color-mix(in oklab, var(--blue-hover) 84%, white) 100%
+  );
   color: var(--text-on-accent);
   font-family: var(--font-geist-mono);
   font-size: 0.76rem;
@@ -2545,7 +2559,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .login-card,
   .login-orb,
   .login-card-scan,
@@ -2589,15 +2602,21 @@
   place-items: center;
   padding: clamp(1rem, 3vw, 2rem);
   background:
-    radial-gradient(circle at 8% 12%,
+    radial-gradient(
+      circle at 8% 12%,
       color-mix(in oklab, var(--blue-base) 18%, transparent) 0%,
-      transparent 32%),
-    radial-gradient(circle at 90% 18%,
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 18%,
       color-mix(in oklab, var(--blue-muted) 14%, transparent) 0%,
-      transparent 36%),
-    linear-gradient(180deg,
+      transparent 36%
+    ),
+    linear-gradient(
+      180deg,
       color-mix(in oklab, var(--blue-subtle) 16%, transparent) 0%,
-      transparent 72%);
+      transparent 72%
+    );
 }
 
 .terminal-login-page::before {
@@ -2615,9 +2634,11 @@
 .terminal-login-grid {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle,
-      color-mix(in oklab, var(--blue-base) 65%, transparent) 1.2px,
-      transparent 1.2px);
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--blue-base) 65%, transparent) 1.2px,
+    transparent 1.2px
+  );
   background-size: 26px 26px;
   opacity: 0.18;
   pointer-events: none;
@@ -2675,15 +2696,21 @@
   isolation: isolate;
   border: 1px solid var(--border-strong);
   background:
-    radial-gradient(circle at 8% 12%,
+    radial-gradient(
+      circle at 8% 12%,
       color-mix(in oklab, var(--blue-base) 18%, transparent) 0%,
-      transparent 32%),
-    radial-gradient(circle at 90% 18%,
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 18%,
       color-mix(in oklab, var(--blue-muted) 14%, transparent) 0%,
-      transparent 36%),
-    linear-gradient(180deg,
+      transparent 36%
+    ),
+    linear-gradient(
+      180deg,
       color-mix(in oklab, var(--bg-subtle) 94%, var(--blue-subtle) 6%) 0%,
-      color-mix(in oklab, var(--bg) 96%, var(--blue-subtle) 4%) 100%);
+      color-mix(in oklab, var(--bg) 96%, var(--blue-subtle) 4%) 100%
+    );
   box-shadow:
     inset 0 0 0 1px color-mix(in oklab, var(--blue-base) 14%, transparent),
     0 16px 38px color-mix(in oklab, var(--blue-base) 11%, transparent);
@@ -2701,7 +2728,7 @@
   opacity: 0.2;
 }
 
-.terminal-login-card>* {
+.terminal-login-card > * {
   position: relative;
   z-index: 1;
 }
@@ -2908,7 +2935,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .terminal-login-ghost-list,
   .terminal-login-spinner {
     animation: none;
@@ -3096,15 +3122,21 @@ html {
   min-height: 100vh;
   overflow: hidden;
   background:
-    radial-gradient(circle at 8% 12%,
+    radial-gradient(
+      circle at 8% 12%,
       color-mix(in oklab, var(--blue-base) 18%, transparent) 0%,
-      transparent 32%),
-    radial-gradient(circle at 90% 18%,
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 18%,
       color-mix(in oklab, var(--blue-muted) 14%, transparent) 0%,
-      transparent 36%),
-    linear-gradient(180deg,
+      transparent 36%
+    ),
+    linear-gradient(
+      180deg,
       color-mix(in oklab, var(--blue-subtle) 16%, transparent) 0%,
-      transparent 72%);
+      transparent 72%
+    );
 }
 
 .private-screen::before {
@@ -3151,9 +3183,11 @@ html {
 
 .kanban-board {
   border: 1px solid var(--border-strong);
-  background: linear-gradient(145deg,
-      color-mix(in oklab, var(--bg-subtle) 93%, white 7%) 0%,
-      color-mix(in oklab, var(--bg) 94%, var(--blue-subtle) 6%) 100%);
+  background: linear-gradient(
+    145deg,
+    color-mix(in oklab, var(--bg-subtle) 93%, white 7%) 0%,
+    color-mix(in oklab, var(--bg) 94%, var(--blue-subtle) 6%) 100%
+  );
   padding: clamp(1rem, 2.2vw, 1.35rem);
 }
 
@@ -3297,7 +3331,7 @@ html {
   gap: 0.3rem;
 }
 
-.kanban-field>span {
+.kanban-field > span {
   font-family: var(--font-geist-mono);
   font-size: 0.58rem;
   letter-spacing: 0.16em;
@@ -3305,9 +3339,9 @@ html {
   color: var(--text-muted);
 }
 
-.kanban-field>input,
-.kanban-field>textarea,
-.kanban-field>select {
+.kanban-field > input,
+.kanban-field > textarea,
+.kanban-field > select {
   border: 1px solid var(--border-strong);
   background: var(--bg);
   padding: 0.5rem 0.6rem;
@@ -3319,14 +3353,14 @@ html {
     box-shadow 140ms ease;
 }
 
-.kanban-field>input:focus,
-.kanban-field>textarea:focus,
-.kanban-field>select:focus {
+.kanban-field > input:focus,
+.kanban-field > textarea:focus,
+.kanban-field > select:focus {
   border-color: var(--blue-base);
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--blue-base) 18%, transparent);
 }
 
-.kanban-field>textarea {
+.kanban-field > textarea {
   resize: vertical;
   min-height: 3.8rem;
 }
@@ -3468,7 +3502,6 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .magic-particle,
   .magic-ripple,
   .kanban-card,

@@ -58,6 +58,7 @@ Arquivo de referencia:
 Conteudo atual:
 
 ```env
+DATABASE_URL=postgresql://user:password@host/database?sslmode=require
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=change-me-now
 JWT_SECRET=use-a-random-secret-with-at-least-32-characters
@@ -97,13 +98,31 @@ http://localhost:3000
 
 ## Scripts Disponiveis
 
-| Comando       | Descricao                            |
-| ------------- | ------------------------------------ |
-| `pnpm dev`    | Inicia o servidor de desenvolvimento |
-| `pnpm build`  | Gera build de producao               |
-| `pnpm start`  | Inicia a build de producao           |
-| `pnpm lint`   | Executa `biome check` no projeto     |
-| `pnpm format` | Executa `biome format --write`       |
+| Comando            | Descricao                                  |
+| ------------------ | ------------------------------------------ |
+| `pnpm dev`         | Inicia o servidor de desenvolvimento       |
+| `pnpm build`       | Gera build de producao                     |
+| `pnpm start`       | Inicia a build de producao                 |
+| `pnpm lint`        | Executa `biome check` no projeto           |
+| `pnpm format`      | Executa `biome format --write`             |
+| `pnpm db:generate` | Gera migrations SQL com Drizzle            |
+| `pnpm db:migrate`  | Aplica migrations no banco alvo            |
+| `pnpm db:seed`     | Executa seed idempotente de dados iniciais |
+
+## Banco de Dados: Migration e Seed
+
+Sequencia recomendada para ambiente local:
+
+```bash
+pnpm db:generate
+pnpm db:migrate
+pnpm db:seed
+```
+
+Observacoes:
+
+- `DATABASE_URL` deve estar definido no ambiente (`.env.local`).
+- O seed atual popula a tabela `users` de forma idempotente.
 
 ## Documentacao da API
 

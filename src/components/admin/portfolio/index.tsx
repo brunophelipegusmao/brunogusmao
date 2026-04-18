@@ -1,5 +1,5 @@
-import { PortfolioManager } from './portfolio-manager';
+import { PortfolioManager } from "./portfolio-manager";
 
 export function DashboardPortfolioTab() {
-   return <PortfolioManager />;
+  return <PortfolioManager />;
 }
